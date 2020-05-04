@@ -5,18 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Countries"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1500">
-    <Grid>
-        <ComboBox HorizontalAlignment="Left" Name="ComboCountry" VerticalAlignment="Top" Width="229" Margin="1215,44,0,0" RenderTransformOrigin="0.5,0.5">
-            <!--<ComboBox.RenderTransform>
-                --><!--<TransformGroup>
-                    <ScaleTransform ScaleX="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </ComboBox.RenderTransform>-->
-        </ComboBox>
+        Title="MainWindow" Height="450" Width="800">
 
+    <Window.Resources>
+        <DataTemplate x:Key="Country">
+            <WrapPanel Margin="0 5 0 5" Height="80">
+                <Image Width="30" Height="30" Stretch="Fill" Source="{Binding Photo}" VerticalAlignment="Center"
+                       HorizontalAlignment="Center" Margin="0,0,15,0"/>
+                <Label Content="{Binding name}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+            </WrapPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <StackPanel Orientation="Horizontal"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="302*"/>
+                <ColumnDefinition Width="491*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel HorizontalAlignment="Left" Width="301" Margin="0,0,0,2">
+                <Label Content="Countries" HorizontalAlignment="Center" FontSize="20" Margin="29,20,171.8,20" Foreground="Blue" Width="100" Height="36"/>
+                <TextBox x:Name="CountrySearch" Height="31" TextWrapping="Wrap" Text=""
+                         Margin="21,0,16.8,0" TextChanged="CountrySearch_TextChanged"/>
+            </StackPanel>
+
+            <ListBox Name="ListBoxCountryList" ItemTemplate="{StaticResource Country}" Margin="9,148,6.4,12" 
+                     SelectionChanged="ListBoxCountryList_SelectionChanged">
+            </ListBox>
+            
+        </Grid>
     </Grid>
 </Window>
